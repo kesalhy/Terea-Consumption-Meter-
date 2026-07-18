@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Tap Meter">
+<meta name="theme-color" content="#F2F2EF">
+<title>Tap Meter</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAI+UlEQVR4nO3ZwW1UWRRFUdwiAUZIFQJiTm4WQ4vcmFukQQo9aMldgnZDgfnvvr/XSuAf1eDuJ9Xd5fL2FQA9f60eAMAaAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUa9XDwAWePPu82Hf+vrlw2Hf4iZ3l8vb1RuA4xx5+q/JwEACABWrTv81GRhFAOD8Jpz+azIwhD+B4eSmXf9XIyc1CQCc2dhTO3ZYigDAaQ0/ssPnFQgAnNMW53WLkScmAABRAgAntNHLeqOp5yMAAFECAGez3Zt6u8GnIQAAUQIAp7Lpa3rT2bsTAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAqNerB8DL+Pjp8bBvPdy/P+xb8OcIANs78vRff1EG2J0AsLHjT//3X5cB9iUAbGnt6b8mA+zLn8DsZ871fzJwEvyQALCZsad27DB4jgCwk+FHdvg8+IYAsI0tzusWI+EfAgAQJQDsYaOX9UZTiRMAgCgBYAPbvam3G0yTAABECQDTbfqa3nQ2KQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRr1cP4FkfPz0e9q2H+/eHfQsYQgAmOvL0X39RBiBFAGY5/vR//3UZgAgBmGLt6b8mAxDhT+AR5lz/JwMnAS9LANYbe2rHDgNehAAsNvzIDp8H/A4BWGmL87rFSOAXCABAlAAss9HLeqOpwM8TAIAoAVhjuzf1doOBHxIAgCgBWGDT1/Sms4HnCABAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAs8HD/fvWEX7Fqtp/rJl+/fFjy3d+06ezdCQBAlACssd2rdu1gP9dNtntNbzf4NAQAIEoAltnoVTth6oQNP2nC1I3e1BtNPR8BAIgSgJUmPBV/aM7IOUv+x5yRW7ystxh5YgKw2Jx78Z+mzZu25xvT5g0/r8PnFQjAetOuxpOZw2auejV12NgjO3ZYigCMMPB2DJz0ZOC2gZOeDDy1Ayc13V0ub1dv4F8fPz2unjD6ln3Dz3WTN+8+r57g9M8iABOtumsb3bJrfq6brMqA0z+QAMx15F3b9JZd83Pd5MgMOP1jCQBAlD+BAaIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIOpv6LrOZy99z2IAAAAASUVORK5CYII=">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIlRhcCBNZXRlciIsICJzaG9ydF9uYW1lIjogIlRhcCBNZXRlciIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjRjJGMkVGIiwgInRoZW1lX2NvbG9yIjogIiNGMkYyRUYiLCAic3RhcnRfdXJsIjogIi4iLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FJQUFBQjdHa090QUFBSStVbEVRVlI0bk8zWndXMVVXUlJGVWR3aUFVWklGUUppVG00V1E0dmNtRnVrUVFvOWFNbGRnblpEZ2ZudnZyL1hTdUFmMWVEdUo5WGQ1ZkwyRlFBOWY2MGVBTUFhQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVWE5WER3QVdlUFB1ODJIZit2cmx3MkhmNGlaM2w4dmIxUnVBNHh4NStxL0p3RUFDQUJXclR2ODFHUmhGQU9EOEpweithekl3aEQrQjRlU21YZjlYSXljMUNRQ2MyZGhUTzNaWWlnREFhUTAvc3NQbkZRZ0FuTk1XNTNXTGtTY21BQUJSQWdBbnROSExlcU9wNXlNQUFGRUNBR2V6M1p0NnU4R25JUUFBVVFJQXA3THBhM3JUMmJzVEFJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9BUUNJRWdDQXFOZXJCOERMK1BqcDhiQnZQZHkvUCt4YjhPY0lBTnM3OHZSZmYxRUcySjBBc0xIalQvLzNYNWNCOWlVQWJHbnQ2YjhtQSt6TG44RHNaODcxZnpKd0V2eVFBTENac2FkMjdEQjRqZ0N3aytGSGR2ZzgrSVlBc0kwdHp1c1dJK0VmQWdBUUpRRHNZYU9YOVVaVGlSTUFnQ2dCWUFQYnZhbTNHMHlUQUFCRUNRRFRiZnFhM25RMktRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJScjFjUDRGa2ZQejBlOXEySCsvZUhmUXNZUWdBbU92TDBYMzlSQmlCRkFHWTUvdlIvLzNVWmdBZ0JtR0x0NmI4bUF4RGhUK0FSNWx6L0p3TW5BUzlMQU5ZYmUyckhEZ05laEFBc052eklEcDhIL0E0QldHbUw4N3JGU09BWENBQkFsQUFzczlITGVxT3B3TThUQUlBb0FWaGp1emYxZG9PQkh4SUFnQ2dCV0dEVDEvU21zNEhuQ0FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQXM4SEQvZnZXRVg3RnF0cC9ySmwrL2ZGankzZCswNmV6ZENRQkFsQUNzc2QycmR1MWdQOWROdG50TmJ6ZjROQVFBSUVvQWx0bm9WVHRoNm9RTlAybkMxSTNlMUJ0TlBSOEJBSWdTZ0pVbVBCVi9hTTdJT1V2K3g1eVJXN3lzdHhoNVlnS3cySng3OForbXpadTI1eHZUNWcwL3I4UG5GUWpBZXRPdXhwT1p3MmF1ZWpWMTJOZ2pPM1pZaWdDTU1QQjJESnowWk9DMmdaT2VERHkxQXljMTNWMHViMWR2NEY4ZlB6MnVuakQ2bG4zRHozV1ROKzgrcjU3ZzlNOGlBQk90dW1zYjNiSnJmcTZick1xQTB6K1FBTXgxNUYzYjlKWmQ4M1BkNU1nTU9QMWpDUUJBbEQrQkFhSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlPcHY2THJPWnk5OXoySUFBQUFBU1VWT1JLNUNZSUk9IiwgInNpemVzIjogIjUxMng1MTIiLCAidHlwZSI6ICJpbWFnZS9wbmcifV19">
+<style>
+:root{--paper:#F2F2EF;--ink:#1A1A17;--muted:#8E8E88;--line:#E4E4DE;--surface:#FFFFFF;
+--accent:#2B44E0;--accent-soft:#ECEEFC;--good:#0E7A4E;--good-bg:#E3F3EB;--bad:#B4451F;--bad-bg:#F8E9E1;
+--sans:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+--mono:ui-monospace,'SF Mono',Menlo,monospace}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+html,body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{max-width:460px;margin:0 auto;padding:18px 18px calc(30px + env(safe-area-inset-bottom))}
+.tabs{display:flex;background:#E8E8E3;border-radius:100px;padding:4px;margin-bottom:20px}
+.tabb{flex:1;border:none;background:transparent;border-radius:100px;padding:10px;font:600 14px var(--sans);color:var(--muted);cursor:pointer}
+.tabb.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.brand{font:600 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.status{font:400 13px/1.3 var(--sans);color:var(--muted);margin-top:6px}
+.chip{background:transparent;border:1px solid var(--line);border-radius:100px;padding:9px 15px;font:500 13px var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap}
+.chip:active{transform:scale(.96)}.chip.warn{border-color:var(--accent);color:var(--accent)}
+.stale{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 20px;text-align:center}
+.stale-t{font:700 20px var(--sans)}.stale-s{font:400 13px/1.6 var(--sans);color:var(--muted);margin-top:8px}
+.taps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tap{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 14px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;transition:transform .08s}
+.tap:active{transform:scale(.975)}.tap.accent{border-color:#D9DEFA}
+.num{font:700 58px/1 var(--sans);letter-spacing:-3px;font-variant-numeric:tabular-nums}
+.tap.accent .num{color:var(--accent)}
+.num.bumped{animation:bump .22s ease}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.14)}100%{transform:scale(1)}}
+.tlab{font:500 12px var(--sans);color:var(--muted);margin-top:2px}
+.plus{margin-top:14px;font:600 13px var(--sans);color:#fff;background:var(--ink);border-radius:100px;padding:8px 22px}
+.tap.accent .plus{background:var(--accent)}
+.ghost{width:100%;margin-top:12px;background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px;font:500 13px var(--sans);color:var(--muted);cursor:pointer}
+.gaphead{margin:22px 0 10px}
+.eyebrow{font:600 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.gaps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gap{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.glab{font:500 12px var(--sans);color:var(--muted)}
+.gval{font:700 26px/1 var(--sans);letter-spacing:-.5px;font-variant-numeric:tabular-nums;margin-top:7px}
+.gval.accent{color:var(--accent)}
+.rule{height:1px;background:var(--line);margin:22px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 12px}
+.mv{font:700 28px/1 var(--sans);letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.mk{font:400 12px var(--sans);color:var(--muted);margin-top:5px}
+.fine{font:400 11px/1.5 var(--sans);color:var(--muted);margin-top:12px}
+.addbtns{display:flex;gap:10px;margin-bottom:10px}
+.addpast{flex:1;background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:11px;font:500 13px var(--sans);color:var(--muted);cursor:pointer}
+.addpast.accentb{color:var(--accent);border-color:#C9CFF5}
+.log{display:flex;flex-direction:column;gap:8px}
+.lrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer}
+.lrow.edit{cursor:default;border-color:var(--accent)}
+.ltype{font:600 13px var(--sans);min-width:52px}.ltype.accent{color:var(--accent)}
+.ltime{font:500 14px var(--mono);color:var(--muted);flex:1}
+.lact{border:none;background:transparent;font:500 13px var(--sans);color:var(--muted);cursor:pointer;padding:6px 10px}
+.lact.del{color:#B4451F}.lact.save{color:#fff;background:var(--accent);border-radius:100px;padding:7px 16px}
+.tin{flex:1;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:500 15px var(--mono);color:var(--ink);background:var(--paper)}
+.tools{display:flex;gap:12px}
+.tool{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font:500 13px var(--sans);cursor:pointer}
+.danger.armed{border-color:#B4451F;color:#B4451F}
+.warnbox{margin-top:16px;padding:12px 14px;border:1px solid var(--accent);border-radius:12px;background:var(--accent-soft);font:400 12.5px/1.5 var(--sans)}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:100px;font:600 13px var(--sans);opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+/* trends */
+.msel{width:100%;appearance:none;-webkit-appearance:none;background:var(--surface) url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'8\'><path d=\'M1 1l5 5 5-5\' stroke=\'%238E8E88\' stroke-width=\'2\' fill=\'none\'/></svg>') no-repeat right 16px center;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:600 15px var(--sans);color:var(--ink);margin-bottom:18px}
+.trow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.tbig{font:700 40px/1 var(--sans);letter-spacing:-1.5px;margin-top:6px}
+.tunit{font:500 14px var(--sans);color:var(--muted);letter-spacing:0}
+.badge{display:inline-block;margin-top:8px;font:600 12px var(--sans);padding:4px 10px;border-radius:100px}
+.badge.good{color:var(--good);background:var(--good-bg)}
+.badge.bad{color:var(--bad);background:var(--bad-bg)}
+.tctl{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.seg{display:flex;background:#E8E8E3;border-radius:100px;padding:3px}
+.segb{border:none;background:transparent;border-radius:100px;padding:7px 16px;font:600 13px var(--sans);color:var(--muted);cursor:pointer}
+.segb.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.pager{display:flex;align-items:center;gap:6px}
+.pgb{border:1px solid var(--line);background:var(--surface);border-radius:10px;width:32px;height:32px;font:600 16px var(--sans);color:var(--ink);cursor:pointer}
+.pgb:disabled{opacity:.35}
+.plabel{font:600 12px var(--mono);color:var(--muted);white-space:nowrap}
+.insight{font:400 13.5px/1.6 var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:14px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px 6px 4px}
+.chartbox svg{width:100%;height:180px;display:block}
+.line{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.dot{fill:var(--surface);stroke:var(--accent);stroke-width:2.5}
+.dlab{font:700 11px var(--sans);fill:var(--ink);text-anchor:middle}
+.axl{font:500 9px var(--mono);fill:var(--muted);text-anchor:middle}
+.dlist{display:flex;flex-direction:column;gap:8px}
+.drow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 15px;cursor:pointer}
+.dname{font:600 14px var(--sans);min-width:70px}
+.dvals{flex:1;font:500 13px var(--sans);color:var(--muted)}
+.dchev{color:var(--muted)}
+.ddetail{background:var(--surface);border:1px solid var(--line);border-top:none;border-radius:0 0 14px 14px;margin-top:-9px;padding:12px 15px 10px}
+.ddl{display:flex;justify-content:space-between;padding:6px 0;font:400 13px var(--sans);color:var(--muted)}
+.ddl b{color:var(--ink);font-weight:600}
+button:active{transform:scale(.985)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head><body>
+<div id="app"></div><div id="toast"></div>
+<script>
+/* ==== Tap Meter core logic v3 (pure, testable) ==== */
+var MAX_WAKING_H = 17;
+
+function uid() { return 'e' + Math.random().toString(36).slice(2, 9) + Date.now().toString(36); }
+
+function ensureIds(events) {
+  for (var i = 0; i < events.length; i++) if (!events[i].id) events[i].id = uid() + i;
+  return events;
+}
+function sortEvents(events) {
+  return events.slice().sort(function (a, b) { return a.ts - b.ts; });
+}
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function localDayKey(ts) {
+  var d = new Date(ts);
+  return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+}
+function keyOfDate(d) {
+  return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+}
+
+/* average interval between consecutive same-type taps inside one list */
+function avgGapIn(list, type) {
+  var prev = null, gaps = [];
+  for (var i = 0; i < list.length; i++) {
+    var e = list[i];
+    if (e.t === type) { if (prev != null) gaps.push(e.ts - prev); prev = e.ts; }
+  }
+  if (!gaps.length) return null;
+  var s = 0; for (var j = 0; j < gaps.length; j++) s += gaps[j];
+  return s / gaps.length;
+}
+
+/* split the event stream into days; a day starts at a wake tap.
+   a second wake on the same calendar date is ignored (mis-tap guard). */
+function buildDays(events) {
+  var evs = sortEvents(events), days = [], cur = null;
+  for (var i = 0; i < evs.length; i++) {
+    var e = evs[i];
+    if (e.t === 'wake') {
+      if (cur && localDayKey(e.ts) === cur.key) continue;
+      cur = { start: e.ts, key: localDayKey(e.ts), events: [] };
+      days.push(cur);
+    } else {
+      if (!cur) { cur = { start: e.ts, key: localDayKey(e.ts), events: [] }; days.push(cur); }
+      cur.events.push(e);
+    }
+  }
+  for (var k = 0; k < days.length; k++) {
+    var d = days[k];
+    d.end = (k + 1 < days.length) ? days[k + 1].start : null;
+    d.terea = d.events.filter(function (x) { return x.t === 'terea'; }).length;
+    d.zyn = d.events.filter(function (x) { return x.t === 'zyn'; }).length;
+    d.avgTerea = avgGapIn(d.events, 'terea');
+    d.avgZyn = avgGapIn(d.events, 'zyn');
+  }
+  return days;
+}
+function dayByKey(days, key) {
+  for (var i = 0; i < days.length; i++) if (days[i].key === key) return days[i];
+  return null;
+}
+function currentDay(days) { return days.length ? days[days.length - 1] : null; }
+
+/* time since last tap of a type — null if it happened before today started */
+function sinceLast(events, dayStart, type, nowTs) {
+  var t = events.filter(function (e) { return e.t === type; }).map(function (e) { return e.ts; });
+  if (!t.length) return null;
+  var last = Math.max.apply(null, t);
+  if (last < dayStart) return null;
+  return nowTs - last;
+}
+function hoursAwake(dayStart, nowTs, cap) {
+  var h = (nowTs - dayStart) / 3600000;
+  if (h < 0) h = 0;
+  return h > cap ? cap : h;
+}
+function perHour(count, hAwake) { return count / Math.max(1, hAwake); }
+
+/* ---- period helpers ---- */
+function startOfWeek(d) {
+  var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  x.setDate(x.getDate() - x.getDay());
+  return x;
+}
+function addDays(d, n) {
+  var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  x.setDate(x.getDate() + n); return x;
+}
+function addMonths(d, n) { return new Date(d.getFullYear(), d.getMonth() + n, 1); }
+
+/* range: 'W' or 'M'; offset 0 = current, -1 = previous */
+function periodRange(range, offset, nowDate) {
+  var keys = [], start, end, i;
+  if (range === 'W') {
+    start = addDays(startOfWeek(nowDate), offset * 7);
+    for (i = 0; i < 7; i++) keys.push(keyOfDate(addDays(start, i)));
+    end = addDays(start, 6);
+  } else {
+    start = addMonths(new Date(nowDate.getFullYear(), nowDate.getMonth(), 1), offset);
+    var last = new Date(start.getFullYear(), start.getMonth() + 1, 0).getDate();
+    for (i = 0; i < last; i++) keys.push(keyOfDate(addDays(start, i)));
+    end = addDays(start, last - 1);
+  }
+  return { start: start, end: end, keys: keys };
+}
+
+var METRICS = {
+  terea:    { label: 'Terea per day',       unit: '',    lowerBetter: true },
+  zyn:      { label: 'Zyn per day',         unit: '',    lowerBetter: true },
+  gapTerea: { label: 'Avg gap \u2014 Terea', unit: 'min', lowerBetter: false },
+  gapZyn:   { label: 'Avg gap \u2014 Zyn',   unit: 'min', lowerBetter: false }
+};
+
+function metricValue(day, metric) {
+  if (!day) return null;
+  if (metric === 'terea') return day.terea;
+  if (metric === 'zyn') return day.zyn;
+  if (metric === 'gapTerea') return day.avgTerea == null ? null : day.avgTerea / 60000;
+  if (metric === 'gapZyn') return day.avgZyn == null ? null : day.avgZyn / 60000;
+  return null;
+}
+
+function seriesFor(days, keys, metric) {
+  return keys.map(function (k) {
+    return { key: k, value: metricValue(dayByKey(days, k), metric) };
+  });
+}
+function averageOf(series) {
+  var vals = series.filter(function (p) { return p.value != null; }).map(function (p) { return p.value; });
+  if (!vals.length) return null;
+  var s = 0; for (var i = 0; i < vals.length; i++) s += vals[i];
+  return s / vals.length;
+}
+function pctChange(cur, prev) {
+  if (cur == null || prev == null || prev === 0) return null;
+  return ((cur - prev) / prev) * 100;
+}
+
+/* ---- editing ---- */
+function addTap(events, type, ts) {
+  var next = events.slice();
+  next.push({ id: uid(), t: type, ts: ts });
+  return sortEvents(next);
+}
+function deleteTap(events, id) {
+  return events.filter(function (e) { return e.id !== id; });
+}
+function updateTapTime(events, id, ts) {
+  var next = events.map(function (e) {
+    return e.id === id ? { id: e.id, t: e.t, ts: ts } : e;
+  });
+  return sortEvents(next);
+}
+function undoLast(events) {
+  var evs = sortEvents(events);
+  for (var i = evs.length - 1; i >= 0; i--) {
+    if (evs[i].t === 'terea' || evs[i].t === 'zyn') return deleteTap(events, evs[i].id);
+  }
+  return events;
+}
+
+/* ---- formatting ---- */
+function fmtAgo(ms) {
+  if (ms == null) return '\u2014';
+  var m = Math.floor(ms / 60000);
+  if (m < 1) return 'now';
+  if (m < 60) return m + 'm';
+  return Math.floor(m / 60) + 'h ' + (m % 60) + 'm';
+}
+function fmtMins(mins) {
+  if (mins == null) return '\u2014';
+  var m = Math.round(mins);
+  if (m < 60) return m + 'm';
+  return Math.floor(m / 60) + 'h ' + (m % 60) + 'm';
+}
+function fmtClock(ts) {
+  var d = new Date(ts);
+  var h = d.getHours(), ap = h < 12 ? 'am' : 'pm', hr = h % 12 === 0 ? 12 : h % 12;
+  return hr + ':' + pad2(d.getMinutes()) + ap;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    MAX_WAKING_H: MAX_WAKING_H, ensureIds: ensureIds, sortEvents: sortEvents,
+    localDayKey: localDayKey, keyOfDate: keyOfDate, avgGapIn: avgGapIn, buildDays: buildDays,
+    dayByKey: dayByKey, currentDay: currentDay, sinceLast: sinceLast, hoursAwake: hoursAwake,
+    perHour: perHour, startOfWeek: startOfWeek, addDays: addDays, periodRange: periodRange,
+    METRICS: METRICS, metricValue: metricValue, seriesFor: seriesFor, averageOf: averageOf,
+    pctChange: pctChange, addTap: addTap, deleteTap: deleteTap, updateTapTime: updateTapTime,
+    undoLast: undoLast, fmtAgo: fmtAgo, fmtMins: fmtMins, fmtClock: fmtClock
+  };
+}
+
+/* ==== Tap Meter UI v3 — depends on logic.js globals ==== */
+(function () {
+  var LS = 'tapmeter.v1';
+  var events = [];
+  var storageOK = true;
+  var tab = 'today';
+  var metric = 'terea';
+  var range = 'W';
+  var offset = 0;
+  var editingId = null;
+  var adding = null;
+  var pendingWake = false, pendingReset = false;
+  var wakeT = null, resetT = null, bump = null;
+  var selectedDayKey = null;
+
+  function load() {
+    try {
+      var r = localStorage.getItem(LS);
+      events = r ? JSON.parse(r) : [];
+      if (!Array.isArray(events)) events = [];
+      ensureIds(events);
+    } catch (e) { storageOK = false; events = []; }
+  }
+  function save() {
+    try { localStorage.setItem(LS, JSON.stringify(events)); }
+    catch (e) { storageOK = false; }
+  }
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.style.opacity = '1';
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.style.opacity = '0'; }, 1600);
+  }
+  function commit(next, msg) { events = next; save(); render(); if (msg) toast(msg); }
+
+  function tapNow(type) {
+    bump = type;
+    commit(addTap(events, type, Date.now()));
+    setTimeout(function () { bump = null; render(); }, 240);
+  }
+  function undo() {
+    var n = undoLast(events);
+    if (n.length === events.length) { toast('Nothing to undo'); return; }
+    commit(n, 'Removed last');
+  }
+  function startDay() {
+    if (!pendingWake) {
+      pendingWake = true; render();
+      clearTimeout(wakeT); wakeT = setTimeout(function () { pendingWake = false; render(); }, 3000);
+      return;
+    }
+    pendingWake = false;
+    var next = events.slice(); next.push({ id: 'w' + Date.now(), t: 'wake', ts: Date.now() });
+    commit(sortEvents(next), 'New day started');
+  }
+  function resetAll() {
+    if (!pendingReset) {
+      pendingReset = true; render();
+      clearTimeout(resetT); resetT = setTimeout(function () { pendingReset = false; render(); }, 3000);
+      return;
+    }
+    pendingReset = false; commit([], 'All data cleared');
+  }
+  function exportData() {
+    try {
+      var blob = new Blob([JSON.stringify(events, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'tapmeter-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 800);
+      toast('Backup downloaded');
+    } catch (e) { toast('Export failed'); }
+  }
+  function importData(file) {
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var data = JSON.parse(r.result);
+        if (!Array.isArray(data)) throw 0;
+        events = ensureIds(data.filter(function (e) { return e && e.t && typeof e.ts === 'number'; }));
+        save(); render(); toast('Restored ' + events.length + ' events');
+      } catch (e) { toast('Invalid backup file'); }
+    };
+    r.readAsText(file);
+  }
+
+  function tsFromTimeInput(baseTs, hhmm) {
+    var p = hhmm.split(':');
+    var d = new Date(baseTs);
+    d.setHours(parseInt(p[0], 10), parseInt(p[1], 10), 0, 0);
+    return d.getTime();
+  }
+  function timeInputVal(ts) {
+    var d = new Date(ts);
+    return (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+  }
+  function withinToday(ts, day, nowTs) {
+    if (ts < day.start) return 'before';
+    if (ts > nowTs) return 'future';
+    return 'ok';
+  }
+  function resolveBackfillTs(day, nowTs, hhmm) {
+    var t1 = tsFromTimeInput(day.start, hhmm);
+    if (withinToday(t1, day, nowTs) === 'ok') return t1;
+    var t2 = t1 + 86400000; // after-midnight span of the same waking day
+    if (withinToday(t2, day, nowTs) === 'ok') return t2;
+    return null;
+  }
+  function saveEditedTap(id, hhmm, days) {
+    var day = currentDay(days);
+    var ts = resolveBackfillTs(day, Date.now(), hhmm);
+    if (ts == null) { toast('Time must be inside today'); return; }
+    editingId = null;
+    commit(updateTapTime(events, id, ts), 'Updated');
+  }
+  function saveNewTap(type, hhmm, days) {
+    var day = currentDay(days);
+    var ts = resolveBackfillTs(day, Date.now(), hhmm);
+    if (ts == null) { toast('Time must be inside today'); return; }
+    adding = null;
+    commit(addTap(events, type, ts), 'Added');
+  }
+
+  function render() {
+    var app = document.getElementById('app');
+    var days = buildDays(events);
+    var html =
+      '<div class="tabs">' +
+        '<button class="tabb' + (tab === 'today' ? ' on' : '') + '" data-tab="today">Today</button>' +
+        '<button class="tabb' + (tab === 'trends' ? ' on' : '') + '" data-tab="trends">Trends</button>' +
+      '</div>' +
+      (tab === 'today' ? renderToday(days) : renderTrends(days)) +
+      (storageOK ? '' : '<div class="warnbox">Browser is blocking storage (private mode?). Data won\u2019t save.</div>');
+    app.innerHTML = html;
+    wire(days);
+  }
+
+  function renderToday(days) {
+    var t = Date.now();
+    var day = currentDay(days);
+    var stale = !day || (t - day.start) > 20 * 3600000;
+
+    var head =
+      '<div class="top">' +
+        '<div><div class="brand">Tap Meter</div><div class="status">' +
+          (day && !stale ? 'Day started ' + fmtClock(day.start) : 'Tap New day when you wake') +
+        '</div></div>' +
+        '<button id="wake" class="chip' + (pendingWake ? ' warn' : '') + '">' + (pendingWake ? 'Tap again \u21bb' : 'New day') + '</button>' +
+      '</div>';
+
+    if (stale) {
+      return head +
+        '<div class="stale">' +
+          '<div class="stale-t">Start your day</div>' +
+          '<div class="stale-s">' + (day ? 'Last day started ' + fmtClock(day.start) + ', over 20h ago.' : 'No day started yet.') +
+          ' Tap <b>New day</b> above so today\u2019s numbers start clean.</div>' +
+        '</div>' + toolsRow();
+    }
+
+    var sT = day.terea, zT = day.zyn;
+    var hA = hoursAwake(day.start, t, MAX_WAKING_H);
+    var sphr = perHour(sT, hA).toFixed(1), zphr = perHour(zT, hA).toFixed(1);
+    var sinceT = sinceLast(events, day.start, 'terea', t);
+    var sinceZ = sinceLast(events, day.start, 'zyn', t);
+    var avgT = day.avgTerea == null ? null : day.avgTerea / 60000;
+    var avgZ = day.avgZyn == null ? null : day.avgZyn / 60000;
+
+    var logRows = day.events.slice().reverse().map(function (e) {
+      if (editingId === e.id) {
+        return '<div class="lrow edit">' +
+          '<span class="ltype' + (e.t === 'zyn' ? ' accent' : '') + '">' + (e.t === 'terea' ? 'Terea' : 'Zyn') + '</span>' +
+          '<input type="time" class="tin" id="tin-' + e.id + '" value="' + timeInputVal(e.ts) + '">' +
+          '<button class="lact save" data-save="' + e.id + '">Save</button>' +
+          '<button class="lact" data-cancel="1">\u2715</button>' +
+        '</div>';
+      }
+      return '<div class="lrow" data-edit="' + e.id + '">' +
+        '<span class="ltype' + (e.t === 'zyn' ? ' accent' : '') + '">' + (e.t === 'terea' ? 'Terea' : 'Zyn') + '</span>' +
+        '<span class="ltime">' + fmtClock(e.ts) + '</span>' +
+        '<button class="lact del" data-del="' + e.id + '">Delete</button>' +
+      '</div>';
+    }).join('');
+
+    var addRow = adding
+      ? '<div class="lrow edit">' +
+          '<span class="ltype' + (adding === 'zyn' ? ' accent' : '') + '">' + (adding === 'terea' ? 'Terea' : 'Zyn') + '</span>' +
+          '<input type="time" class="tin" id="tin-new" value="' + timeInputVal(t) + '">' +
+          '<button class="lact save" data-savenew="1">Save</button>' +
+          '<button class="lact" data-cancel="1">\u2715</button>' +
+        '</div>'
+      : '<div class="addbtns">' +
+          '<button class="addpast" data-add="terea">+ Past Terea</button>' +
+          '<button class="addpast accentb" data-add="zyn">+ Past Zyn</button>' +
+        '</div>';
+
+    return head +
+      '<div class="taps">' +
+        tapCard('terea', 'Terea', sT, false) +
+        tapCard('zyn', 'Zyn', zT, true) +
+      '</div>' +
+      '<button id="undo" class="ghost">\u21a9 Undo last tap</button>' +
+
+      '<div class="gaphead"><span class="eyebrow">Time since last</span></div>' +
+      '<div class="gaps">' +
+        gapCard('Terea', fmtAgo(sinceT), false) +
+        gapCard('Zyn', fmtAgo(sinceZ), true) +
+      '</div>' +
+
+      '<div class="gaphead"><span class="eyebrow">Avg time between \u00b7 today</span></div>' +
+      '<div class="gaps">' +
+        gapCard('Terea', fmtMins(avgT), false) +
+        gapCard('Zyn', fmtMins(avgZ), true) +
+      '</div>' +
+
+      '<div class="rule"></div>' +
+      '<div class="grid">' +
+        metricBox(sphr, 'Terea / hour') + metricBox(zphr, 'Zyn / hour') +
+      '</div>' +
+      '<div class="fine">Per-hour = today \u00f7 ' + hA.toFixed(1) + 'h since day start (capped 17).</div>' +
+
+      '<div class="rule"></div>' +
+      '<div class="gaphead"><span class="eyebrow">Today\u2019s log</span></div>' +
+      addRow +
+      '<div class="log">' + (logRows || '<div class="fine">No taps yet.</div>') + '</div>' +
+      toolsRow();
+  }
+
+  function toolsRow() {
+    return '<div class="rule"></div>' +
+      '<div class="tools">' +
+        '<button id="exp" class="tool">Export backup</button>' +
+        '<button id="imp" class="tool">Import</button>' +
+        '<input id="file" type="file" accept="application/json,.json" style="display:none">' +
+      '</div>' +
+      '<button id="reset" class="ghost danger' + (pendingReset ? ' armed' : '') + '">' + (pendingReset ? 'Tap again to erase everything' : 'Reset all data') + '</button>';
+  }
+
+  function renderTrends(days) {
+    var nowD = new Date();
+    var cur = periodRange(range, offset, nowD);
+    var prev = periodRange(range, offset - 1, nowD);
+    var s = seriesFor(days, cur.keys, metric);
+    var sp = seriesFor(days, prev.keys, metric);
+    var avg = averageOf(s), pavg = averageOf(sp);
+    var pct = pctChange(avg, pavg);
+    var m = METRICS[metric];
+    var isGap = metric.indexOf('gap') === 0;
+    var good = pct != null && ((m.lowerBetter && pct < 0) || (!m.lowerBetter && pct > 0));
+
+    var opts = Object.keys(METRICS).map(function (k) {
+      return '<option value="' + k + '"' + (k === metric ? ' selected' : '') + '>' + METRICS[k].label + '</option>';
+    }).join('');
+
+    var label = rangeLabel(cur, range);
+    var avgTxt = avg == null ? '\u2014' : (isGap ? fmtMins(avg) : avg.toFixed(1));
+    var badge = pct == null ? '' :
+      '<span class="badge ' + (good ? 'good' : 'bad') + '">' + (pct > 0 ? '\u25b2' : '\u25bc') + ' ' + Math.abs(pct).toFixed(0) + '% vs prior</span>';
+
+    var insight = buildInsight(avg, pct, m, isGap);
+    var chart = lineChart(s, isGap, range);
+
+    var dayList = cur.keys.slice().reverse().map(function (k) {
+      var d = dayByKey(days, k);
+      if (!d) return '';
+      var open = selectedDayKey === k;
+      var head = '<div class="drow" data-day="' + k + '">' +
+        '<span class="dname">' + dayName(k) + '</span>' +
+        '<span class="dvals">' + d.terea + ' Terea \u00b7 ' + d.zyn + ' Zyn</span>' +
+        '<span class="dchev">' + (open ? '\u25be' : '\u25b8') + '</span></div>';
+      var detail = open ?
+        '<div class="ddetail">' +
+          '<div class="ddl"><span>Avg gap Terea</span><b>' + fmtMins(d.avgTerea == null ? null : d.avgTerea / 60000) + '</b></div>' +
+          '<div class="ddl"><span>Avg gap Zyn</span><b>' + fmtMins(d.avgZyn == null ? null : d.avgZyn / 60000) + '</b></div>' +
+          '<div class="ddl"><span>Day started</span><b>' + fmtClock(d.start) + '</b></div>' +
+        '</div>' : '';
+      return head + detail;
+    }).join('');
+
+    return '<div class="top" style="margin-bottom:14px">' +
+        '<div><div class="brand">Trends</div></div>' +
+      '</div>' +
+      '<select id="metricSel" class="msel">' + opts + '</select>' +
+      '<div class="trow">' +
+        '<div class="tavg"><div class="eyebrow">Average</div>' +
+          '<div class="tbig">' + avgTxt + (isGap ? '' : '<span class="tunit"> /day</span>') + '</div>' + badge + '</div>' +
+        '<div class="tctl">' +
+          '<div class="seg"><button class="segb' + (range === 'W' ? ' on' : '') + '" data-range="W">W</button>' +
+          '<button class="segb' + (range === 'M' ? ' on' : '') + '" data-range="M">M</button></div>' +
+          '<div class="pager"><button class="pgb" id="pgPrev">\u2039</button>' +
+          '<span class="plabel">' + label + '</span>' +
+          '<button class="pgb" id="pgNext"' + (offset >= 0 ? ' disabled' : '') + '>\u203a</button></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="insight">' + insight + '</div>' +
+      chart +
+      '<div class="rule"></div>' +
+      '<div class="gaphead"><span class="eyebrow">Days</span></div>' +
+      '<div class="dlist">' + (dayList || '<div class="fine">No logged days in this period.</div>') + '</div>';
+  }
+
+  function buildInsight(avg, pct, m, isGap) {
+    if (avg == null) return 'No data in this period yet \u2014 keep logging.';
+    if (pct == null) return 'First period with data \u2014 next period gets a comparison.';
+    var better = (m.lowerBetter && pct < 0) || (!m.lowerBetter && pct > 0);
+    var dir = Math.abs(pct).toFixed(0) + '%';
+    if (isGap) {
+      return better
+        ? 'Spacing up ' + dir + ' \u2014 you\u2019re holding out longer between each one. That\u2019s the number that matters.'
+        : 'Spacing shrank ' + dir + ' vs prior \u2014 you\u2019re reaching more often. Watch your peak hours.';
+    }
+    return better
+      ? 'Down ' + dir + ' vs prior \u2014 real progress, keep the pace.'
+      : 'Up ' + dir + ' vs prior \u2014 an honest number is still a useful one. Tighten tomorrow.';
+  }
+
+  function rangeLabel(cur, range) {
+    var s = cur.start, e = cur.end;
+    var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    if (range === 'M') return mo[s.getMonth()] + ' ' + s.getFullYear();
+    return mo[s.getMonth()] + ' ' + s.getDate() + ' \u2013 ' + mo[e.getMonth()] + ' ' + e.getDate();
+  }
+  function dayName(key) {
+    var p = key.split('-');
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()] + ' ' + d.getDate();
+  }
+
+  function lineChart(series, isGap, range) {
+    var W = 420, Hh = 170, padL = 6, padR = 6, padT = 26, padB = 24;
+    var pts = series.map(function (p, i) { return { i: i, v: p.value, key: p.key }; });
+    var vals = pts.filter(function (p) { return p.v != null; }).map(function (p) { return p.v; });
+    if (!vals.length) return '<div class="chartbox"><div class="fine" style="padding:30px 0;text-align:center">No data to chart yet.</div></div>';
+    var max = Math.max.apply(null, vals), min = Math.min.apply(null, vals);
+    if (max === min) { max += 1; min = Math.max(0, min - 1); }
+    var span = max - min;
+    var n = series.length;
+    var x = function (i) { return padL + (W - padL - padR) * (n === 1 ? 0.5 : i / (n - 1)); };
+    var y = function (v) { return padT + (Hh - padT - padB) * (1 - (v - min) / span); };
+
+    var path = '', dots = '', labels = '', axis = '';
+    var last = null;
+    pts.forEach(function (p) {
+      if (p.v == null) { last = null; return; }
+      var px = x(p.i), py = y(p.v);
+      path += (last == null ? 'M' : 'L') + px.toFixed(1) + ' ' + py.toFixed(1) + ' ';
+      dots += '<circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="4.5" class="dot"/>';
+      var lab = isGap ? Math.round(p.v) : (p.v % 1 === 0 ? p.v : p.v.toFixed(1));
+      labels += '<text x="' + px.toFixed(1) + '" y="' + (py - 10).toFixed(1) + '" class="dlab">' + lab + '</text>';
+      last = p;
+    });
+    pts.forEach(function (p) {
+      var show = range === 'W' ? true : (p.i % 5 === 0 || p.i === n - 1);
+      if (!show) return;
+      var parts = p.key.split('-');
+      var d = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+      var txt = range === 'W' ? ['S','M','T','W','T','F','S'][d.getDay()] + d.getDate() : '' + d.getDate();
+      axis += '<text x="' + x(p.i).toFixed(1) + '" y="' + (Hh - 6) + '" class="axl">' + txt + '</text>';
+    });
+
+    return '<div class="chartbox"><svg viewBox="0 0 ' + W + ' ' + Hh + '" preserveAspectRatio="none">' +
+      '<path d="' + path.trim() + '" class="line"/>' + dots + labels + axis + '</svg></div>';
+  }
+
+  function tapCard(type, label, count, accent) {
+    var b = (bump === type) ? ' bumped' : '';
+    return '<button id="tap-' + type + '" class="tap' + (accent ? ' accent' : '') + '">' +
+      '<span class="num' + b + '">' + count + '</span>' +
+      '<span class="tlab">' + label + ' today</span>' +
+      '<span class="plus">+1</span></button>';
+  }
+  function gapCard(label, val, accent) {
+    return '<div class="gap"><div class="glab">' + label + '</div><div class="gval' + (accent ? ' accent' : '') + '">' + val + '</div></div>';
+  }
+  function metricBox(v, k) {
+    return '<div class="m"><div class="mv">' + v + '</div><div class="mk">' + k + '</div></div>';
+  }
+
+  function wire(days) {
+    document.querySelectorAll('.tabb').forEach(function (b) {
+      b.onclick = function () { tab = b.getAttribute('data-tab'); render(); };
+    });
+    var el;
+    if ((el = document.getElementById('tap-terea'))) el.onclick = function () { tapNow('terea'); };
+    if ((el = document.getElementById('tap-zyn'))) el.onclick = function () { tapNow('zyn'); };
+    if ((el = document.getElementById('undo'))) el.onclick = undo;
+    if ((el = document.getElementById('wake'))) el.onclick = startDay;
+    if ((el = document.getElementById('reset'))) el.onclick = resetAll;
+    if ((el = document.getElementById('exp'))) el.onclick = exportData;
+    if ((el = document.getElementById('imp'))) el.onclick = function () { document.getElementById('file').click(); };
+    if ((el = document.getElementById('file'))) el.onchange = function (e) { if (e.target.files[0]) importData(e.target.files[0]); e.target.value = ''; };
+
+    document.querySelectorAll('[data-del]').forEach(function (b) {
+      b.onclick = function (ev) { ev.stopPropagation(); commit(deleteTap(events, b.getAttribute('data-del')), 'Deleted'); };
+    });
+    document.querySelectorAll('[data-edit]').forEach(function (row) {
+      row.onclick = function () { editingId = row.getAttribute('data-edit'); adding = null; render(); };
+    });
+    document.querySelectorAll('[data-cancel]').forEach(function (b) {
+      b.onclick = function (ev) { ev.stopPropagation(); editingId = null; adding = null; render(); };
+    });
+    document.querySelectorAll('[data-save]').forEach(function (b) {
+      b.onclick = function (ev) {
+        ev.stopPropagation();
+        var id = b.getAttribute('data-save');
+        var v = document.getElementById('tin-' + id).value;
+        if (v) saveEditedTap(id, v, days);
+      };
+    });
+    document.querySelectorAll('[data-add]').forEach(function (b) {
+      b.onclick = function () { adding = b.getAttribute('data-add'); editingId = null; render(); };
+    });
+    document.querySelectorAll('[data-savenew]').forEach(function (b) {
+      b.onclick = function () {
+        var v = document.getElementById('tin-new').value;
+        if (v) saveNewTap(adding, v, days);
+      };
+    });
+
+    if ((el = document.getElementById('metricSel'))) el.onchange = function (e) { metric = e.target.value; render(); };
+    document.querySelectorAll('[data-range]').forEach(function (b) {
+      b.onclick = function () { range = b.getAttribute('data-range'); offset = 0; render(); };
+    });
+    if ((el = document.getElementById('pgPrev'))) el.onclick = function () { offset -= 1; render(); };
+    if ((el = document.getElementById('pgNext'))) el.onclick = function () { if (offset < 0) { offset += 1; render(); } };
+    document.querySelectorAll('[data-day]').forEach(function (r) {
+      r.onclick = function () {
+        var k = r.getAttribute('data-day');
+        selectedDayKey = (selectedDayKey === k) ? null : k;
+        render();
+      };
+    });
+  }
+
+  load();
+  render();
+  setInterval(function () { if (tab === 'today' && !editingId && !adding) render(); }, 30000);
+})();
+
+</script>
+</body></html>
